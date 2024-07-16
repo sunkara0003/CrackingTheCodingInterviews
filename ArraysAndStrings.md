@@ -1,5 +1,5 @@
 # Arrays and Strings
-1. Problem: is Urlify
+# is Urlify
 - Description: Implement an algorithm to determine if a string has all unique characters. What if there is no additional datastructures?
 - Solution:
   - Confirm the string is a set of ASCII chars or UniCodes
