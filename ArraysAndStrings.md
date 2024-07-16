@@ -93,6 +93,48 @@ def permutation(s, t):
   return True
 ```
 
+# Urilify
+- Replace space with %20 in the string
+  - Count spaces and make the newstring index= 2*spaces + truelength. Assume the string has enough spaces at the end
+  - replace the space with the %20 chars and actual if not space char from backward traversing.
+  - TC = O(N)
+  - SC = O(N)
+
+```py
+def Urilify(tests, truelength):
+  count_spaces = 0
+  test = list(tests)
+  for i in range(truelength):
+    if test[i]==" ":
+      count_spaces+=1
+  index = count_spaces*2 + truelength
+  if(truelength<len(tests)):
+    test[truelength-1]="\0"
+  for i in range(truelength-1,-1,-1):
+    if test[i]==" ":
+      test[index-1]="%"
+      test[index-2]="0"
+      test[index-3]="2"
+      index-=3
+    else:
+      test[index-1]=test[i]
+      index-=1
+  return "".join(test)
+
+tests = "Mr John Smith    "
+print(Urilify(tests,13))
+# output: Mr20%John20%Smit
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
