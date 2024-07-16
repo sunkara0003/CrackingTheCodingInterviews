@@ -21,6 +21,8 @@ print(Urilify(test))
 ```
 
 ```py
+# O(N) TC
+# O(c) SC
 def Urilify(test):
   bitVector = 0
   result = 0
@@ -35,5 +37,24 @@ def Urilify(test):
 test = "aba"
 print(Urilify(test))
 ```
+
+```py
+# O(N^2) TC
+def Urilify(test):
+  for i in range(len(test)-1):
+    for j in range(i+1,len(test)):
+      if test[i]==test[j]:
+        return False
+  return True
+test = "aba"
+print(Urilify(test))
+```
+```py
+# O(N) + O(NlogN) TC
+# linearly checking neighbours if they are same then return True
+test = "".join(sorted(test))
+```
+
+
 
 
