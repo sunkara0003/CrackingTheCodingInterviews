@@ -20,7 +20,7 @@ test = "aba"
 print(IsUrilify(test))
 ```
 
-```psy
+```py
 # O(N) TC
 # O(c) SC
 def IsUrilify(test):
