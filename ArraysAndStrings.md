@@ -6,6 +6,11 @@
 - Given a matrix element at (i,j)(i,j), the swaps can be broken down as follows:
 - TC = O(N^2)
 ```py
+Top: (i,j)(i,j)
+Right: (j,N−1−i)(j,N−1−i)
+Bottom: (N−1−i,N−1−j)(N−1−i,N−1−j)
+Left: (N−1−j,i)(N−1−j,i)
+
     Save the top element (initial element at (i, j)):
         temp = A[i][j]
     Move left element to top:
@@ -23,14 +28,17 @@ def rotateMatrix(matrix):
     return "Not Square Matrix"
   N = len(matrix[0])
   for i in range(N//2):
-    for j in range(N-i-1):
-      temp = matrix[i][j]
-      matrix[i][j] = matrix[N - 1 - j][i]
-      matrix[N - 1 - j][i] = matrix[N - 1 - i][N - 1 - j]
-      matrix[N - 1 - i][N - 1 - j] = matrix[j][N - 1 - i]
-      matrix[j][N - 1 - i] = temp
-      printMatrix(matrix)
-      print()
+    for j in range(i,N-i-1):
+        #top
+        top = matrix[i][j]
+        #left
+        matrix[i][j] = matrix[N-1-j][i]
+        #bottom
+        matrix[N-1-j][i] = matrix[N-1-i][N-1-j]
+        #right
+        matrix[N-1-i][N-1-j] = matrix[j][N-1-i]
+        #top
+        matrix[j][N-1-i] = top
   return matrix
 
 def printMatrix(A):
