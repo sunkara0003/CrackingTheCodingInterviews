@@ -76,6 +76,32 @@ test = "aabbb"
 print(isPalimdromePermutation(test))
 ```
 
+```
+# More optimized removing extra isPalindromCheck for max one odd character count
+# we are doing tradeoff on OddCount value to stabilize with even count and make it <=1
+def getCharNumber(ch):
+    if ch>='a' and ch<='z':
+      return ord(ch) - ord('a')
+    return -1
+def isPalimdromePermutation(test):
+  hashtable = dict()
+  odd_counter = 0
+  even_counter = 0
+  for ch in test:
+    ch = ch.lower()
+    if getCharNumber(ch)!=-1:
+      hashtable[ch]=hashtable.get(ch,0)+1
+      if hashtable[ch]%2==1:
+        odd_counter+=1
+      else:
+        odd_counter-=1
+  print(hashtable)
+  return odd_counter<=1
+
+test = "Tact Coa"
+test = "aabbb"
+print(isPalimdromePermutation(test))
+```
 
 
 
