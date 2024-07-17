@@ -6,6 +6,13 @@
      - Count the characters store in hashtable
      - if it is odd length string then only one character with odd count should exists.
      - if it is an even length string then all characters should be even count
+  - Solution 2: use the odd character count tradeoff with even char count finally oddcount<=1 return
+  - Solution 3:
+     - Here we dont need to return the no of odd character count taking 2nd solution as reference.
+     - we just toggle the bits that are not overrapping. If they do so then N&(N-1)==0 means not overlapping
+     - If there is an overlapping then N&(N-1)!=0 the toggle the mask and & with bitvector.
+     - Here bitvector is an integer of 8bit size.
+  
 ```py
 def getCharNumber(ch):
     if ch>='a' and ch<='z' or ch>='A' and ch<='Z':
@@ -102,6 +109,43 @@ test = "Tact Coa"
 test = "aabbb"
 print(isPalimdromePermutation(test))
 ```
+```py
+# it more brain eating solution. Working with bits and toggling the bits which are not overlapping.
+def isPalindrom(test):
+  bitVector = createBitVector(test)
+  print(bitVector==0)
+  result = bitVector&(bitVector-1)
+  if(bitVector==0 or result==0)==True:
+    return True
+  else:
+    return False
+
+def createBitVector(test):
+  bitVector = 0
+  for ch in test:
+    if ch==" ":
+      continue
+    ch = ch.lower()
+    val_index = ord(ch) - ord('a')
+    bitVector = toggle(bitVector, val_index)
+  return bitVector
+
+def toggle(bitVector, index):
+  if index<0:
+    return bitVector # no need of operations
+  mask = 1<<index
+  if bitVector&(mask)==0:
+    bitVector = bitVector|mask
+  else:
+    bitVector = ~mask & bitVector
+
+  return bitVector
+
+test = "Tact Coa"
+test = "aabbb"
+print(isPalindrom(test))
+```
+
 
 
 
