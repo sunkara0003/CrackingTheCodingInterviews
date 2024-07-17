@@ -1,4 +1,85 @@
 # Arrays and Strings
+
+# Palindrome Permutation 
+- Given a String with even or odd length we need to check its permuation is a palidrome.
+  - Solution 1: TC=O(N) SC=O(N)
+     - Count the characters store in hashtable
+     - if it is odd length string then only one character with odd count should exists.
+     - if it is an even length string then all characters should be even count
+```py
+def getCharNumber(ch):
+    if ch>='a' and ch<='z' or ch>='A' and ch<='Z':
+      ch = ch.lower()
+      return ord(ch) - ord('a')
+    return -1
+def isPalindromCheck(hashtable):
+  odd_counter = 0
+  even_counter = 0
+  for k,v in hashtable.items():
+    if v%2==0:
+      even_counter+=v
+    else:
+      odd_counter+=v
+  total_length = odd_counter+even_counter
+  if total_length%2==0 and even_counter%2==0:
+    return True
+  elif total_length%2==1 and odd_counter%2==1 and even_counter%2==0:
+    return True
+  else:
+    return False
+def isPalimdromePermutation(test):
+  hashtable = dict()
+  for ch in test:
+    if getCharNumber(ch)!=-1:
+      ch = ch.lower()
+      hashtable[ch]=hashtable.get(ch,0)+1
+  print(hashtable)
+  if isPalindromCheck(hashtable):
+    return True
+  return False
+test = "Tact Coa"
+test = "taco cat"
+print(isPalimdromePermutation(test))
+# return true
+```
+
+```py
+#Optimized checking the max one odd  count char
+# EVEN + EVEN = EVEN
+# ODD + EVEN = ODD
+# here to form a permutation we can allow only one odd count char.
+def getCharNumber(ch):
+    if ch>='a' and ch<='z' or ch>='A' and ch<='Z':
+      ch = ch.lower()
+      return ord(ch) - ord('a')
+    return -1
+def isPalindromCheck(hashtable):
+  oddflag = False
+  for k,v in hashtable.items():
+    if v%2==1:
+      if oddflag==True:
+        return False
+      oddflag=True
+  return True
+def isPalimdromePermutation(test):
+  hashtable = dict()
+  for ch in test:
+    if getCharNumber(ch)!=-1:
+      ch = ch.lower()
+      hashtable[ch]=hashtable.get(ch,0)+1
+  print(hashtable)
+  if isPalindromCheck(hashtable):
+    return True
+  return False
+test = "Tact Coa"
+test = "aabbb"
+print(isPalimdromePermutation(test))
+```
+
+
+
+
+
 # is Urlify
 - Description: Implement an algorithm to determine if a string has all unique characters. What if there is no additional datastructures?
 - Solution:
