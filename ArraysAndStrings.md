@@ -76,7 +76,7 @@ test = "aabbb"
 print(isPalimdromePermutation(test))
 ```
 
-```
+```py
 # More optimized removing extra isPalindromCheck for max one odd character count
 # we are doing tradeoff on OddCount value to stabilize with even count and make it <=1
 def getCharNumber(ch):
