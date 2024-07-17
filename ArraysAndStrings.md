@@ -1,4 +1,66 @@
 # Arrays and Strings
+# OneWay Edit
+- Operation on a given string can be delete/replace/add characters to the given string to make the match with other string.
+
+
+```py
+
+def OneWayEdit(s,t):
+  Ns = len(s)
+  Nt = len(t)
+  if Ns == Nt+1:
+    print("delete")
+    if deleteS(s, t, Ns, Nt)==1:
+      return True
+    else:
+      return False
+  elif Ns== Nt-1:
+    print("insert")
+    if insert(s, t, Ns, Nt)==0:
+      return True
+    else:
+      return False
+  elif Ns==Nt:
+    print("replace")
+    if replace(s, t, Ns, Nt)==1:
+      return True
+    else:
+      return False
+def insert(s, t, Ns, Nt):
+  counter = 0
+  for i in range(Ns):
+    if s[i]==t[i]:
+      counter=0
+    else:
+      return 1
+
+def replace(s,t,Ns,Nt):
+  counter = 0
+  for i in range(Ns):
+    if s[i]==t[i]:
+      counter=0
+    else:
+      return 1
+def deleteS(s, t, Ns, Nt):
+  counter = 0
+  for i in range(Ns-1):
+    if s[i]==t[i]:
+      counter = 0
+    else:
+      counter=1
+  if s[Ns-1]!=t[Nt-1]:
+      counter+=1
+  return counter
+ 
+s = "pales"
+t = "ples"
+s = "pale"
+t = "pale"
+s = "pale"
+t = "bale"
+print(OneWayEdit(s,t))
+
+```
 
 # Palindrome Permutation 
 - Given a String with even or odd length we need to check its permuation is a palidrome.
