@@ -1,4 +1,27 @@
 # Arrays and Strings
+
+# String Compression
+- Compressing the string aaabbbcc to a3b3c2
+
+```py
+def strCompression(test):
+  countConsecutives = 0
+  N = len(test)
+  compressed_str = ""
+  for i in range(N):
+    countConsecutives+=1
+    if i+1>=N or test[i+1]!=test[i]:
+      compressed_str += test[i]+str(countConsecutives)
+      countConsecutives=0
+  return test if len(compressed_str)<N else compressed_str
+
+test = "aabbcc"
+print(strCompression(test))
+      
+
+```
+
+
 # OneWay Edit
 - Operation on a given string can be delete/replace/add characters to the given string to make the match with other string.
 
