@@ -1,5 +1,50 @@
 # Arrays and Strings
 
+# Rotate Matrix 90 degreess
+- Rotate the matrix by 90 degress clock-wise
+- For a 90∘90∘ clockwise rotation, the element at position (i,j)(i,j) in the original matrix will move to position (j,N−1−i)(j,N−1−i) in the rotated matrix, where NN is the size of the matrix.
+- Given a matrix element at (i,j)(i,j), the swaps can be broken down as follows:
+```py
+    Save the top element (initial element at (i, j)):
+        temp = A[i][j]
+    Move left element to top:
+        A[i][j] = A[N - 1 - j][i]
+    Move bottom element to left:
+        A[N - 1 - j][i] = A[N - 1 - i][N - 1 - j]
+    Move right element to bottom:
+        A[N - 1 - i][N - 1 - j] = A[j][N - 1 - i]
+    Move saved top element to right:
+        A[j][N - 1 - i] = temp
+```
+```py
+def rotateMatrix(matrix):
+  if len(matrix)==0 or len(matrix)!=len(matrix[0]):
+    return "Not Square Matrix"
+  N = len(matrix[0])
+  for i in range(N//2):
+    for j in range(N-i-1):
+      temp = matrix[i][j]
+      matrix[i][j] = matrix[N - 1 - j][i]
+      matrix[N - 1 - j][i] = matrix[N - 1 - i][N - 1 - j]
+      matrix[N - 1 - i][N - 1 - j] = matrix[j][N - 1 - i]
+      matrix[j][N - 1 - i] = temp
+      printMatrix(matrix)
+      print()
+  return matrix
+
+def printMatrix(A):
+    N = len(A[0])
+    for i in range(N):
+        print(A[i])
+
+matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+printMatrix(matrix)
+print()
+matrix = rotateMatrix(matrix)
+printMatrix(matrix)
+```
+
+
 # String Compression
 - Compressing the string aaabbbcc to a3b3c2
 
