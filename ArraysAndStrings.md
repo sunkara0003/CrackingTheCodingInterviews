@@ -2,8 +2,9 @@
 
 # Rotate Matrix 90 degreess
 - Rotate the matrix by 90 degress clock-wise
-- For a 90∘90∘ clockwise rotation, the element at position (i,j)(i,j) in the original matrix will move to position (j,N−1−i)(j,N−1−i) in the rotated matrix, where NN is the size of the matrix.
+- For a 90∘90∘ clockwise rotation, the element at position (i,j)(i,j) in the original matrix will move to position (j,N−1−i)(j,N−1−i) in the rotated matrix, where N is the size of the matrix.
 - Given a matrix element at (i,j)(i,j), the swaps can be broken down as follows:
+- TC = O(N^2)
 ```py
     Save the top element (initial element at (i, j)):
         temp = A[i][j]
